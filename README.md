@@ -4,7 +4,6 @@
 
 Welcome to the Quiz App project! This Flutter app is designed to create an interactive quiz experience for users. It consists of several screens, including a starting screen, quiz screens, and a result screen. This ReadMe file will guide you through the project structure and how to use or contribute to this app.
 
-![Quiz App Pics](/assets/images/Fun_Quiz_App.png)
 
 ## Getting Started
 
