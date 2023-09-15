@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:fun_quiz_app/data/questions.dart';
 import 'package:fun_quiz_app/elements.dart';
 import 'package:fun_quiz_app/ques_screen.dart';
+import 'package:fun_quiz_app/result_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,7 +14,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomepageState extends State<HomePage> {
-  // const _HomepageState({super.key});
+
+   List<String> selectedAnswer = [];
 
   Widget? currElements;
 
@@ -22,9 +25,32 @@ class _HomepageState extends State<HomePage> {
     super.initState();
   }
 
+  void storeAnswer(String answer) {
+    selectedAnswer.add(answer);
+
+    if (selectedAnswer.length == questions.length) {
+      setState(() {
+        currElements = ResultScreen(choosenAnswers: selectedAnswer, restartButton: endscreen);
+        selectedAnswer = [];
+      });
+    }
+  }
+
+  void endscreen(){
+      setState(() {
+      currElements = QuesScreen(
+        onTapAnswer: storeAnswer,
+      );
+      selectedAnswer = [];
+    });
+    
+  }
+
   void switchScreen() {
     setState(() {
-      currElements = const QuesScreen();
+      currElements = QuesScreen(
+        onTapAnswer: storeAnswer,
+      );
     });
   }
 
